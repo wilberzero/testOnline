@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Online - Test Moderno 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Overlay de carga -->
+    <div id="loading" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Cargando tests desde archivos CSV...</p>
+        </div>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Selector de tests -->
+        <div class="test-selector">
+            <label for="test-select" class="test-selector-label">Seleccionar Test:</label>
+            <select id="test-select" class="test-dropdown form-control">
+                <option value="">Cargando tests desde CSV...</option>
+            </select>
+        </div>
+
+        <header class="quiz-header">
+            <h1 id="quiz-title" class="quiz-title">Test Online</h1>
+            <div class="header-decoration"></div>
+        </header>
+
+        <main class="quiz-content">
+            <!-- Las preguntas se generarán dinámicamente aquí -->
+            <div id="questions-container" class="questions-container"></div>
+
+            <!-- Botones de acción -->
+            <div class="action-buttons">
+                <button id="check-btn" class="btn btn--primary" disabled>
+                    <span>Corregir Test</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </button>
+                <button id="reset-btn" class="btn btn--secondary">
+                    <span>Resetear</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de resultados -->
+    <div id="result-modal" class="modal hidden">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>¡Resultados del Test!</h2>
+                <button class="modal-close" id="close-modal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="score-display">
+                    <div class="score-circle">
+                        <span id="score-percentage">0%</span>
+                    </div>
+                    <div class="score-details">
+                        <p id="score-text">Has acertado 0 de 0 preguntas</p>
+                        <div class="score-bar">
+                            <div id="score-progress" class="score-progress"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="continue-btn" class="btn btn--primary">Ver Respuestas</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación para cambio de test -->
+    <div id="change-confirm-modal" class="modal hidden">
+        <div class="modal-overlay" id="change-modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>¿Cambiar de test?</h2>
+                <button class="modal-close" id="change-close-modal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de cambiar de test? Se perderán las respuestas actuales.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm-change-btn" class="btn btn--primary">Sí, cambiar</button>
+                <button id="cancel-change-btn" class="btn btn--secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Información sobre archivos CSV -->
+    <div class="csv-info" style="position: fixed; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 8px 12px; border-radius: 6px; font-size: 12px; z-index: 100;">
+        📁 Cargando desde CSV externos
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
